@@ -1,0 +1,25 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: InfrastructureStack
+metadata:
+  name: core-infra
+spec:
+  name: core-infra
+  detach: false
+  type: TERRAFORM
+  approval: true
+  manageState: true
+  actor: console@plural.sh
+  repositoryRef:
+    name: infra
+    namespace: infra
+  clusterRef:
+    name: mgmt
+    namespace: infra
+  variables:
+    project: 424323427586
+    region: us-east-2
+    cluster_name: plural-exp
+  
+  git:
+    ref: main
+    folder: terraform/core-infra

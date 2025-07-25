@@ -1,0 +1,20 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: datadog
+  namespace: datadog
+spec:
+  namespace: datadog
+  helm:
+    version: 3.x.x
+    chart: datadog
+    values:
+      datadog:
+        apiKeyExistingSecret: datadog-api-key
+    repository:
+      name: datadog
+      namespace: datadog
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: datadog
